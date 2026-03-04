@@ -15,48 +15,46 @@ export default function SuccessOverlay({ guestName, total, itemNames, onClose }:
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} />
-
-      {/* Food Rain */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
       <FoodRain />
-
-      {/* Card */}
       <div className="relative z-10 w-full max-w-sm animate-success-pulse">
-        <div className="smoke-card rounded-2xl p-8 text-center">
-          <div className="text-6xl mb-3">🔥</div>
-
-          <div className="inline-block bg-gradient-to-r from-ember-600 to-copper-500 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-            {title}
+        <div className="recap-card rounded-2xl p-10 text-center">
+          {/* Checkmark */}
+          <div className="w-16 h-16 mx-auto mb-5 rounded-full border-2 border-champagne-500/40 flex items-center justify-center">
+            <svg className="w-8 h-8 text-champagne-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
           </div>
 
-          <h2 className="font-display text-2xl font-bold text-cream-200 mb-1">
+          <p className="text-[10px] text-champagne-500/60 uppercase tracking-[0.3em] mb-3">{title}</p>
+
+          <h2 className="font-display text-3xl font-light text-ivory-100 mb-2">
             {guestName}
           </h2>
-          <p className="text-smoke-400 text-sm mb-4">
-            Ta commande est enregistree !
+          <p className="text-onyx-400 text-sm mb-6">
+            Commande enregistree
           </p>
 
-          <div className="bg-charcoal-900/60 rounded-xl p-4 mb-5 border border-ember-500/10">
-            <p className="text-3xl font-bold text-success-400">
-              {total.toFixed(2)} {'\u20AC'}
+          <div className="mb-6">
+            <p className="font-display text-4xl font-light text-champagne-400 tabular-nums">
+              {total.toFixed(2)} &euro;
             </p>
           </div>
 
-          <div className="mb-5">
-            <p className="font-arabic text-2xl text-copper-400 mb-1">
+          <div className="mb-8">
+            <p className="font-arabic text-xl text-champagne-500/40 mb-1">
               {blessing.text}
             </p>
-            <p className="text-smoke-500 text-xs">
+            <p className="text-onyx-500 text-[10px] tracking-wider">
               {blessing.lang} — {blessing.meaning}
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-ember-600 to-ember-500 text-white font-semibold hover:from-ember-500 hover:to-ember-400 active:scale-[0.97] transition-all text-base shadow-lg shadow-ember-500/20"
+            className="w-full py-3.5 rounded-lg bg-champagne-500 text-onyx-900 font-semibold text-sm uppercase tracking-wider hover:bg-champagne-400 active:scale-[0.97] transition-all"
           >
-            🌙 Nouvelle commande
+            Nouvelle commande
           </button>
         </div>
       </div>

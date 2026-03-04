@@ -47,7 +47,7 @@ export default function OrdersListPage() {
 
   const handleExportExcel = () => {
     type Row = (string | number)[]
-    const header: Row = ['Nom', 'Telephone', 'Articles', 'Quantite', 'Prix unitaire', 'Sous-total', 'TOTAL', 'Remarques']
+    const header: Row = ['Nom', 'Articles', 'Quantite', 'Prix unitaire', 'Sous-total', 'TOTAL', 'Remarques']
     const rows: Row[] = [header]
 
     let computedGrandTotal = 0
@@ -65,7 +65,6 @@ export default function OrdersListPage() {
 
         rows.push([
           order.guest_name,
-          order.phone ?? '',
           itemName,
           firstItem.quantity,
           firstItem.unit_price,
@@ -79,20 +78,20 @@ export default function OrdersListPage() {
           const miN = getMenuItem(oi.menu_item_id)
           const name = (miN?.name ?? `Item #${oi.menu_item_id}`) +
             (oi.variant_label ? ` (${oi.variant_label})` : '')
-          rows.push(['', '', name, oi.quantity, oi.unit_price, Math.round(oi.unit_price * oi.quantity * 100) / 100, '', ''])
+          rows.push(['', name, oi.quantity, oi.unit_price, Math.round(oi.unit_price * oi.quantity * 100) / 100, '', ''])
         }
       } else {
-        rows.push([order.guest_name, order.phone ?? '', '(vide)', 0, 0, 0, 0, order.remarks ?? ''])
+        rows.push([order.guest_name, '(vide)', 0, 0, 0, 0, order.remarks ?? ''])
       }
     }
 
     const grandTotal = Math.round(computedGrandTotal * 100) / 100
     rows.push([])
-    rows.push(['TOTAL GENERAL', '', '', '', '', '', grandTotal, `${orders.length} commandes`])
+    rows.push(['TOTAL GENERAL', '', '', '', '', grandTotal, `${orders.length} commandes`])
 
     const ws = XLSX.utils.aoa_to_sheet(rows)
     ws['!cols'] = [
-      { wch: 18 }, { wch: 16 }, { wch: 45 }, { wch: 8 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 25 },
+      { wch: 18 }, { wch: 45 }, { wch: 8 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 25 },
     ]
 
     const wb = XLSX.utils.book_new()
@@ -103,82 +102,84 @@ export default function OrdersListPage() {
   const grandTotal = orders.reduce((sum, o) => sum + Number(o.total), 0)
 
   return (
-    <div className="min-h-screen grill-pattern pb-8">
-      <header className="px-4 pt-8 pb-6">
-        <a
-          href="#/"
-          className="inline-flex items-center gap-2 text-copper-400 text-sm mb-4 hover:text-copper-300"
-        >
-          ← Retour au menu
-        </a>
-        <h1 className="font-display text-2xl font-bold text-cream-200">
-          🔥 Commandes Seyfi Chef
-        </h1>
-        <p className="text-smoke-500 text-sm mt-1">
-          Toutes les commandes pour l'iftar
-        </p>
-      </header>
+    <div className="min-h-screen pb-8">
+      <div className="ambient-bg" />
+      <div className="relative z-10">
+        <header className="px-4 pt-10 pb-8">
+          <a
+            href="#/"
+            className="inline-flex items-center gap-2 text-onyx-500 text-xs uppercase tracking-[0.2em] mb-6 hover:text-champagne-400 transition-colors"
+          >
+            &larr; Retour au menu
+          </a>
+          <h1 className="font-display text-3xl font-light text-ivory-200 tracking-wide">
+            Commandes
+          </h1>
+          <div className="line-gold mt-3 w-16" />
+          <p className="text-onyx-500 text-xs mt-3 tracking-wider">
+            Toutes les commandes pour l'iftar
+          </p>
+        </header>
 
-      {/* Stats */}
-      <div className="px-4 mb-6">
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-charcoal-800/60 border border-charcoal-700/40 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-cream-200">{orders.length}</p>
-            <p className="text-xs text-smoke-500">Commandes</p>
-          </div>
-          <div className="bg-charcoal-800/60 border border-charcoal-700/40 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-success-400">
-              {grandTotal.toFixed(2)} {'\u20AC'}
-            </p>
-            <p className="text-xs text-smoke-500">Total general</p>
+        {/* Stats */}
+        <div className="px-4 mb-8">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="recap-card rounded-xl p-5 text-center">
+              <p className="font-display text-3xl font-light text-ivory-200">{orders.length}</p>
+              <p className="text-[10px] text-onyx-500 uppercase tracking-[0.2em] mt-1">Commandes</p>
+            </div>
+            <div className="recap-card rounded-xl p-5 text-center">
+              <p className="font-display text-3xl font-light text-champagne-400 tabular-nums">
+                {grandTotal.toFixed(2)} {'\u20AC'}
+              </p>
+              <p className="text-[10px] text-onyx-500 uppercase tracking-[0.2em] mt-1">Total general</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Action buttons */}
-      <div className="px-4 mb-4 space-y-2">
-        <button
-          onClick={loadData}
-          className="w-full py-2.5 rounded-xl border border-copper-500/20 bg-copper-500/5 text-copper-300 text-sm font-medium hover:bg-copper-500/10 transition-all active:scale-[0.98]"
-        >
-          🔄 Rafraichir les commandes
-        </button>
-        {orders.length > 0 && (
+        {/* Action buttons */}
+        <div className="px-4 mb-6 space-y-3">
           <button
-            onClick={handleExportExcel}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-success-600 to-success-500 text-white text-sm font-semibold hover:from-success-500 hover:to-success-400 transition-all active:scale-[0.98] shadow-lg shadow-success-500/20"
+            onClick={loadData}
+            className="w-full py-3 border border-onyx-800/60 text-onyx-400 text-xs uppercase tracking-[0.2em] hover:border-champagne-500/30 hover:text-champagne-400 transition-all active:scale-[0.98]"
           >
-            📥 Telecharger Excel pour le restaurant
+            Rafraichir
           </button>
-        )}
-      </div>
+          {orders.length > 0 && (
+            <button
+              onClick={handleExportExcel}
+              className="w-full py-3.5 rounded-lg bg-champagne-500 text-onyx-900 text-sm font-semibold uppercase tracking-wider hover:bg-champagne-400 transition-all active:scale-[0.97]"
+            >
+              Telecharger Excel
+            </button>
+          )}
+        </div>
 
-      {/* Orders list */}
-      <div className="px-4 space-y-3">
-        {loading ? (
-          <div className="text-center py-12">
-            <div className="text-3xl mb-3 animate-float">🔥</div>
-            <p className="text-copper-300 animate-pulse">Chargement...</p>
-          </div>
-        ) : orders.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-4xl mb-3">🍽️</div>
-            <p className="text-smoke-400">Aucune commande pour l'instant</p>
-            <p className="text-smoke-600 text-sm mt-1">
-              Les commandes apparaitront ici
-            </p>
-          </div>
-        ) : (
-          orders.map((order) => (
-            <OrderCard
-              key={order.id}
-              order={order}
-              orderItems={orderItemsMap[order.id] ?? []}
-              menuItems={menuItems}
-              onDelete={handleDelete}
-            />
-          ))
-        )}
+        {/* Orders list */}
+        <div className="px-4">
+          {loading ? (
+            <div className="text-center py-16">
+              <p className="text-champagne-400 animate-pulse font-display text-lg tracking-wider">Chargement...</p>
+            </div>
+          ) : orders.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-onyx-500 text-sm">Aucune commande pour l'instant</p>
+              <p className="text-onyx-600 text-xs mt-2">
+                Les commandes apparaitront ici
+              </p>
+            </div>
+          ) : (
+            orders.map((order) => (
+              <OrderCard
+                key={order.id}
+                order={order}
+                orderItems={orderItemsMap[order.id] ?? []}
+                menuItems={menuItems}
+                onDelete={handleDelete}
+              />
+            ))
+          )}
+        </div>
       </div>
     </div>
   )

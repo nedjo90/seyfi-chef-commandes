@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import Header from '../components/Header'
-import EmberBackground from '../components/StarryBackground'
+import AmbientBackground from '../components/StarryBackground'
 import CategorySection from '../components/CategorySection'
 import OrderRecap from '../components/OrderRecap'
 import OrderSummaryBar from '../components/OrderSummaryBar'
@@ -20,7 +20,6 @@ export default function OrderPage() {
   const [error, setError] = useState<string | null>(null)
 
   const [guestName, setGuestName] = useState('')
-  const [phone, setPhone] = useState('')
   const [remarks, setRemarks] = useState('')
   const [cart, setCart] = useState<Map<string, CartItem>>(new Map())
 
@@ -76,7 +75,7 @@ export default function OrderPage() {
     try {
       const order = await createOrder({
         guest_name: guestName.trim(),
-        phone: phone.trim() || null,
+        phone: null,
         remarks: remarks.trim() || null,
         total,
       })
@@ -97,7 +96,6 @@ export default function OrderPage() {
         itemNames: cartItemsList.map((ci) => ci.menuItem.name),
       })
       setGuestName('')
-      setPhone('')
       setRemarks('')
       setCart(new Map())
     } catch (err) {
@@ -110,10 +108,9 @@ export default function OrderPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <EmberBackground />
+        <AmbientBackground />
         <div className="relative z-10 text-center">
-          <div className="text-5xl mb-4 animate-float" style={{ filter: 'drop-shadow(0 0 12px rgba(232,67,46,0.5))' }}>🔥</div>
-          <p className="text-copper-300 animate-pulse font-display text-lg">Chargement du menu...</p>
+          <p className="text-champagne-400 animate-pulse font-display text-lg tracking-wider">Chargement du menu...</p>
         </div>
       </div>
     )
@@ -121,52 +118,38 @@ export default function OrderPage() {
 
   return (
     <div className="min-h-screen pb-28">
-      <EmberBackground />
-      <div className="relative z-10 grill-pattern">
+      <AmbientBackground />
+      <div className="relative z-10">
         <Header />
 
         {/* Nav to orders */}
-        <div className="px-4 mb-5">
+        <div className="px-4 mb-6">
           <a
             href="#/commandes"
-            className="block w-full text-center py-2.5 rounded-xl border border-ember-500/15 bg-ember-500/5 text-copper-400 text-sm font-medium hover:bg-ember-500/10 transition-all"
+            className="block w-full text-center py-2.5 border-b border-onyx-800/60 text-onyx-400 text-xs uppercase tracking-[0.2em] hover:text-champagne-400 transition-colors"
           >
-            📋 Voir toutes les commandes →
+            Voir toutes les commandes
           </a>
         </div>
 
         {/* Error banner */}
         {error && (
-          <div className="mx-4 mb-4 p-3 rounded-xl bg-ember-600/20 border border-ember-500/30 text-ember-300 text-sm text-center animate-slide-down">
-            ❌ {error}
+          <div className="mx-4 mb-4 p-3 border border-wine-800/40 bg-wine-900/20 text-wine-400 text-sm text-center animate-slide-down">
+            {error}
           </div>
         )}
 
         {/* Guest name */}
-        <div className="px-4 mb-4">
-          <label className="block text-sm text-cream-300 font-medium mb-2">
-            ✍️ Votre nom *
+        <div className="px-4 mb-6">
+          <label className="block text-[10px] text-onyx-500 uppercase tracking-[0.2em] mb-2">
+            Votre nom
           </label>
           <input
             type="text"
             value={guestName}
             onChange={(e) => setGuestName(e.target.value)}
             placeholder="Entrez votre nom..."
-            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3.5 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all text-base"
-          />
-        </div>
-
-        {/* Phone */}
-        <div className="px-4 mb-6">
-          <label className="block text-sm text-cream-300 font-medium mb-2">
-            📱 Telephone (optionnel)
-          </label>
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="+352..."
-            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3.5 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all text-base"
+            className="luxury-input"
           />
         </div>
 
@@ -190,22 +173,22 @@ export default function OrderPage() {
         </div>
 
         {/* Remarks */}
-        <div className="px-4 mt-2">
-          <label className="block text-sm text-cream-300 font-medium mb-2">
-            💬 Remarques (allergies, preferences...)
+        <div className="px-4 mt-4">
+          <label className="block text-[10px] text-onyx-500 uppercase tracking-[0.2em] mb-2">
+            Remarques
           </label>
           <textarea
             value={remarks}
             onChange={(e) => setRemarks(e.target.value)}
-            placeholder="Optionnel..."
+            placeholder="Allergies, preferences..."
             rows={2}
-            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all resize-none text-base"
+            className="luxury-input resize-none"
           />
         </div>
 
         {/* Order Recap */}
         {cartItemsList.length > 0 && (
-          <div className="px-4 mt-5">
+          <div className="px-4 mt-6">
             <OrderRecap cartItems={cartItemsList} total={total} />
           </div>
         )}
