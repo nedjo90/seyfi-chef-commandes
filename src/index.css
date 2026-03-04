@@ -38,14 +38,14 @@
   --color-ivory-300: #e0dbd0;
   --color-ivory-400: #c4bdaf;
 
-  /* Onyx — rich blacks */
+  /* Onyx — rich blacks (brightened mid-range for readability) */
   --color-onyx-50: #f5f5f5;
   --color-onyx-100: #e8e8e8;
   --color-onyx-200: #d1d1d1;
-  --color-onyx-300: #a3a3a3;
-  --color-onyx-400: #737373;
-  --color-onyx-500: #525252;
-  --color-onyx-600: #3a3a3a;
+  --color-onyx-300: #b0b0b0;
+  --color-onyx-400: #9a9a9a;
+  --color-onyx-500: #7a7a7a;
+  --color-onyx-600: #4a4a4a;
   --color-onyx-700: #282828;
   --color-onyx-800: #1a1a1a;
   --color-onyx-900: #0a0a0a;
@@ -67,7 +67,7 @@ body {
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #4a4a4a; border-radius: 2px; }
 
 /* === SUBTLE AMBIENT LIGHT === */
 .ambient-bg {
@@ -166,7 +166,7 @@ body {
 /* === INPUT STYLING === */
 .luxury-input {
   background: transparent;
-  border-bottom: 1px solid #3a3a3a;
+  border-bottom: 1px solid #4a4a4a;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -179,7 +179,7 @@ body {
 }
 
 .luxury-input::placeholder {
-  color: #525252;
+  color: #7a7a7a;
   font-style: italic;
 }
 
