@@ -1,26 +1,25 @@
-export default function Lantern({ side }: { side: 'left' | 'right' }) {
+export default function FlameIcon({ side }: { side: 'left' | 'right' }) {
   const isLeft = side === 'left'
   return (
     <div
-      className={`absolute top-0 ${isLeft ? 'left-4' : 'right-4'} lantern ${isLeft ? '' : 'lantern-delay'}`}
+      className={`absolute top-2 ${isLeft ? 'left-5' : 'right-5'} flame`}
+      style={{ animationDelay: isLeft ? '0s' : '0.8s' }}
     >
-      <svg width="32" height="56" viewBox="0 0 32 56" fill="none" className="drop-shadow-lg">
-        <path d="M14 0 Q16 4 18 0" stroke="#d4911d" strokeWidth="1.5" fill="none" />
-        <line x1="16" y1="2" x2="16" y2="10" stroke="#d4911d" strokeWidth="1" />
-        <path d="M10 10 L22 10 L20 14 L12 14 Z" fill="#b87016" />
-        <path d="M12 14 Q8 28 12 42 L20 42 Q24 28 20 14 Z" fill="url(#lanternGrad)" opacity="0.9" />
-        <ellipse cx="16" cy="28" rx="4" ry="10" fill="#edc25c" opacity="0.5" />
-        <ellipse cx="16" cy="28" rx="2" ry="6" fill="#f9edcc" opacity="0.6" />
-        <path d="M12 42 L20 42 L18 46 L14 46 Z" fill="#b87016" />
-        <line x1="16" y1="46" x2="16" y2="54" stroke="#d4911d" strokeWidth="1" />
-        <circle cx="16" cy="55" r="1.5" fill="#d4911d" />
+      <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
         <defs>
-          <linearGradient id="lanternGrad" x1="16" y1="14" x2="16" y2="42">
-            <stop offset="0%" stopColor="#e8ad35" />
-            <stop offset="50%" stopColor="#d4911d" />
-            <stop offset="100%" stopColor="#995216" />
+          <linearGradient id={`flameGrad_${side}`} x1="12" y1="40" x2="12" y2="0">
+            <stop offset="0%" stopColor="#e8432e" />
+            <stop offset="40%" stopColor="#d97b1f" />
+            <stop offset="80%" stopColor="#eeb06a" />
+            <stop offset="100%" stopColor="#fdf0d5" stopOpacity="0.8" />
           </linearGradient>
         </defs>
+        <path
+          d="M12 0 C12 0, 2 14, 2 22 C2 30, 6 36, 12 40 C18 36, 22 30, 22 22 C22 14, 12 0, 12 0 Z"
+          fill={`url(#flameGrad_${side})`}
+          opacity="0.7"
+        />
+        <ellipse cx="12" cy="28" rx="4" ry="6" fill="#fdf0d5" opacity="0.4" />
       </svg>
     </div>
   )

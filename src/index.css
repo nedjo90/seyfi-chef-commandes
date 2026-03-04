@@ -1,49 +1,71 @@
 @import "tailwindcss";
 
+/* =============================================
+   SEYFI CHEF — "Ember & Crescent" Theme
+   A steakhouse Iftar experience.
+   Charcoal, ember red, warm copper, smoke cream.
+   ============================================= */
+
 @theme {
-  --color-gold-50: #fdf8ed;
-  --color-gold-100: #f9edcc;
-  --color-gold-200: #f3d894;
-  --color-gold-300: #edc25c;
-  --color-gold-400: #e8ad35;
-  --color-gold-500: #d4911d;
-  --color-gold-600: #b87016;
-  --color-gold-700: #995216;
-  --color-gold-800: #7d4119;
-  --color-gold-900: #673617;
+  /* Ember — deep reds, fire glow */
+  --color-ember-50: #fef2f0;
+  --color-ember-100: #fee2de;
+  --color-ember-200: #fec9c2;
+  --color-ember-300: #fc9f93;
+  --color-ember-400: #f86f5e;
+  --color-ember-500: #e8432e;
+  --color-ember-600: #c92d1a;
+  --color-ember-700: #a82416;
+  --color-ember-800: #8b2217;
+  --color-ember-900: #6e1f17;
 
-  --color-terracotta-50: #fdf3f0;
-  --color-terracotta-100: #fce4dd;
-  --color-terracotta-200: #f9c7b8;
-  --color-terracotta-300: #f4a188;
-  --color-terracotta-400: #ec7454;
-  --color-terracotta-500: #e04d2a;
-  --color-terracotta-600: #c7371e;
-  --color-terracotta-700: #a62b1a;
-  --color-terracotta-800: #89271b;
-  --color-terracotta-900: #72261d;
+  /* Copper — warm metallic accent */
+  --color-copper-50: #fdf6ee;
+  --color-copper-100: #fae8d0;
+  --color-copper-200: #f4cf9f;
+  --color-copper-300: #eeb06a;
+  --color-copper-400: #e89640;
+  --color-copper-500: #d97b1f;
+  --color-copper-600: #c06018;
+  --color-copper-700: #9f4617;
+  --color-copper-800: #82381a;
+  --color-copper-900: #6b2f18;
 
-  --color-emerald-50: #edfdf5;
-  --color-emerald-100: #d4f9e4;
-  --color-emerald-200: #acf2ce;
-  --color-emerald-300: #75e6b1;
-  --color-emerald-400: #3dd28f;
-  --color-emerald-500: #19b874;
-  --color-emerald-600: #0e955e;
-  --color-emerald-700: #0b774d;
-  --color-emerald-800: #0d5e3f;
-  --color-emerald-900: #0c4d35;
+  /* Smoke — warm grays with a hint of brown */
+  --color-smoke-50: #f7f5f3;
+  --color-smoke-100: #ede9e4;
+  --color-smoke-200: #ddd5cc;
+  --color-smoke-300: #c4b7aa;
+  --color-smoke-400: #a99889;
+  --color-smoke-500: #968272;
+  --color-smoke-600: #897365;
+  --color-smoke-700: #725f55;
+  --color-smoke-800: #5f5049;
+  --color-smoke-900: #514541;
 
-  --color-night-50: #f4f3f2;
-  --color-night-100: #e2dfdd;
-  --color-night-200: #c7c1bc;
-  --color-night-300: #a69e96;
-  --color-night-400: #8d8377;
-  --color-night-500: #7f7567;
-  --color-night-600: #6c6155;
-  --color-night-700: #584e46;
-  --color-night-800: #4c443e;
-  --color-night-900: #1a1410;
+  /* Charcoal — rich deep blacks */
+  --color-charcoal-50: #f5f4f3;
+  --color-charcoal-100: #e5e2e0;
+  --color-charcoal-200: #cbc5c0;
+  --color-charcoal-300: #aba29a;
+  --color-charcoal-400: #938779;
+  --color-charcoal-500: #7b6e62;
+  --color-charcoal-600: #695d53;
+  --color-charcoal-700: #564c44;
+  --color-charcoal-800: #3d3630;
+  --color-charcoal-900: #1c1714;
+
+  /* Cream — light accent */
+  --color-cream-50: #fffdf8;
+  --color-cream-100: #fef9ed;
+  --color-cream-200: #fdf0d5;
+  --color-cream-300: #fbe4b6;
+  --color-cream-400: #f8d48d;
+
+  /* Success green */
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
 
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
@@ -54,58 +76,72 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background-color: #0c0a08;
-  color: var(--color-gold-100);
+  background-color: #110e0c;
+  color: var(--color-cream-200);
   min-height: 100dvh;
   overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-gold-700); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--color-ember-800); border-radius: 2px; }
 
-/* === STARRY SKY === */
-.starry-bg {
+/* === EMBER BACKGROUND — Smoldering grill ambiance === */
+.ember-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(212,145,29,0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(14,149,94,0.03) 0%, transparent 50%),
-    #0c0a08;
+    radial-gradient(ellipse at 30% 80%, rgba(232,67,46,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 20%, rgba(217,123,31,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(28,23,20,1) 0%, #110e0c 100%);
 }
 
-.star {
+/* === FLOATING EMBERS (replaces stars) === */
+.ember-particle {
   position: absolute;
   border-radius: 50%;
-  background: white;
-  animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
+  animation: emberFloat var(--dur, 4s) ease-in-out infinite alternate;
   opacity: 0;
 }
 
-@keyframes twinkle {
-  0% { opacity: 0.1; transform: scale(0.8); }
-  100% { opacity: var(--max-op, 0.8); transform: scale(1.2); }
+@keyframes emberFloat {
+  0% { opacity: 0.15; transform: translateY(0) scale(0.8); }
+  50% { opacity: var(--max-op, 0.9); }
+  100% { opacity: 0.1; transform: translateY(calc(var(--drift, -30px))) scale(1.3); }
 }
 
-/* === LANTERN === */
-@keyframes lanternSwing {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+/* === GRILL GLOW — Subtle bottom fire glow === */
+.grill-glow {
+  position: fixed;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 200px;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, rgba(232,67,46,0.08) 0%, rgba(217,123,31,0.04) 30%, transparent 70%);
+  animation: grillPulse 4s ease-in-out infinite alternate;
 }
 
-@keyframes lanternGlow {
-  0%, 100% { filter: drop-shadow(0 0 8px rgba(212,145,29,0.4)); }
-  50% { filter: drop-shadow(0 0 16px rgba(212,145,29,0.7)); }
+@keyframes grillPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
-.lantern {
-  animation: lanternSwing 4s ease-in-out infinite, lanternGlow 3s ease-in-out infinite;
-  transform-origin: top center;
+/* === FLAME FLICKER (replaces lanterns) === */
+@keyframes flameFlicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.8; }
+  25% { transform: scaleY(1.05) scaleX(0.95); opacity: 1; }
+  50% { transform: scaleY(0.95) scaleX(1.05); opacity: 0.7; }
+  75% { transform: scaleY(1.08) scaleX(0.92); opacity: 0.9; }
 }
 
-.lantern-delay { animation-delay: 1.5s; }
+.flame {
+  animation: flameFlicker 2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
 
 /* === ANIMATIONS === */
 @keyframes float {
@@ -114,12 +150,12 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(0.92); }
   to { opacity: 1; transform: scale(1); }
 }
 
@@ -135,13 +171,19 @@ body {
 
 @keyframes successPulse {
   0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.08); }
   100% { transform: scale(1); opacity: 1; }
 }
 
-@keyframes shimmer {
+@keyframes heatShimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes smokeRise {
+  0% { opacity: 0.3; transform: translateY(0) scaleX(1); }
+  50% { opacity: 0.15; transform: translateY(-20px) scaleX(1.3); }
+  100% { opacity: 0; transform: translateY(-40px) scaleX(1.6); }
 }
 
 .animate-float { animation: float 3s ease-in-out infinite; }
@@ -150,13 +192,13 @@ body {
 .animate-slide-down { animation: slideDown 0.4s ease-out forwards; }
 .animate-success-pulse { animation: successPulse 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(212,145,29,0.15), transparent);
+.animate-heat-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(232,67,46,0.1), rgba(217,123,31,0.08), transparent);
   background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: heatShimmer 4s infinite;
 }
 
-/* Confetti */
+/* Confetti / Food Rain */
 .confetti-piece {
   position: fixed;
   top: -20px;
@@ -165,18 +207,25 @@ body {
   animation-delay: var(--delay, 0s);
 }
 
-/* === MOROCCAN PATTERN === */
-.moroccan-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4911d' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+/* === SMOKE GLASS CARD (replaces recap-card) === */
+.smoke-card {
+  background: linear-gradient(145deg, rgba(61,54,48,0.5) 0%, rgba(28,23,20,0.85) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(232,67,46,0.12);
 }
 
-/* === DROPDOWN CUSTOM === */
-.dropdown-glow:focus {
-  box-shadow: 0 0 0 2px rgba(212,145,29,0.15), 0 4px 20px rgba(212,145,29,0.1);
+/* === GRILL PATTERN (replaces moroccan-pattern) === */
+.grill-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e8432e' stroke-opacity='0.03' stroke-width='1'%3E%3Cline x1='0' y1='20' x2='40' y2='20'/%3E%3Cline x1='20' y1='0' x2='20' y2='40'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* === ORDER RECAP CARD === */
-.recap-card {
-  background: linear-gradient(135deg, rgba(76,68,62,0.4) 0%, rgba(26,20,16,0.8) 100%);
-  backdrop-filter: blur(8px);
+/* === INPUT GLOW === */
+.input-glow:focus {
+  box-shadow: 0 0 0 2px rgba(232,67,46,0.15), 0 4px 20px rgba(232,67,46,0.08);
+}
+
+/* === CATEGORY DIVIDER — hot bar === */
+.hot-divider {
+  height: 2px;
+  background: linear-gradient(90deg, rgba(232,67,46,0.5), rgba(217,123,31,0.3), transparent);
 }

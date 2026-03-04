@@ -57,7 +57,6 @@ export default function OrdersListPage() {
       const orderTotal = Math.round(items.reduce((s, oi) => s + oi.unit_price * oi.quantity, 0) * 100) / 100
       computedGrandTotal += orderTotal
 
-      // First item row includes order info
       if (items.length > 0) {
         const firstItem = items[0]
         const mi = getMenuItem(firstItem.menu_item_id)
@@ -75,7 +74,6 @@ export default function OrdersListPage() {
           order.remarks ?? '',
         ])
 
-        // Remaining items
         for (let i = 1; i < items.length; i++) {
           const oi = items[i]
           const miN = getMenuItem(oi.menu_item_id)
@@ -88,21 +86,13 @@ export default function OrdersListPage() {
       }
     }
 
-    // Grand total
     const grandTotal = Math.round(computedGrandTotal * 100) / 100
     rows.push([])
     rows.push(['TOTAL GENERAL', '', '', '', '', '', grandTotal, `${orders.length} commandes`])
 
     const ws = XLSX.utils.aoa_to_sheet(rows)
     ws['!cols'] = [
-      { wch: 18 },
-      { wch: 16 },
-      { wch: 45 },
-      { wch: 8 },
-      { wch: 12 },
-      { wch: 12 },
-      { wch: 12 },
-      { wch: 25 },
+      { wch: 18 }, { wch: 16 }, { wch: 45 }, { wch: 8 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 25 },
     ]
 
     const wb = XLSX.utils.book_new()
@@ -113,18 +103,18 @@ export default function OrdersListPage() {
   const grandTotal = orders.reduce((sum, o) => sum + Number(o.total), 0)
 
   return (
-    <div className="min-h-screen moroccan-pattern pb-8">
+    <div className="min-h-screen grill-pattern pb-8">
       <header className="px-4 pt-8 pb-6">
         <a
           href="#/"
-          className="inline-flex items-center gap-2 text-gold-400 text-sm mb-4 hover:text-gold-300"
+          className="inline-flex items-center gap-2 text-copper-400 text-sm mb-4 hover:text-copper-300"
         >
           ← Retour au menu
         </a>
-        <h1 className="font-display text-2xl font-bold text-gold-300">
-          📋 Commandes Seyfi Chef
+        <h1 className="font-display text-2xl font-bold text-cream-200">
+          🔥 Commandes Seyfi Chef
         </h1>
-        <p className="text-night-400 text-sm mt-1">
+        <p className="text-smoke-500 text-sm mt-1">
           Toutes les commandes pour l'iftar
         </p>
       </header>
@@ -132,15 +122,15 @@ export default function OrdersListPage() {
       {/* Stats */}
       <div className="px-4 mb-6">
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-night-800/60 border border-night-700/50 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-gold-300">{orders.length}</p>
-            <p className="text-xs text-night-400">Commandes</p>
+          <div className="bg-charcoal-800/60 border border-charcoal-700/40 rounded-xl p-4 text-center">
+            <p className="text-2xl font-bold text-cream-200">{orders.length}</p>
+            <p className="text-xs text-smoke-500">Commandes</p>
           </div>
-          <div className="bg-night-800/60 border border-night-700/50 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-emerald-400">
+          <div className="bg-charcoal-800/60 border border-charcoal-700/40 rounded-xl p-4 text-center">
+            <p className="text-2xl font-bold text-success-400">
               {grandTotal.toFixed(2)} {'\u20AC'}
             </p>
-            <p className="text-xs text-night-400">Total general</p>
+            <p className="text-xs text-smoke-500">Total general</p>
           </div>
         </div>
       </div>
@@ -149,14 +139,14 @@ export default function OrdersListPage() {
       <div className="px-4 mb-4 space-y-2">
         <button
           onClick={loadData}
-          className="w-full py-2.5 rounded-xl border border-gold-500/20 bg-gold-500/5 text-gold-300 text-sm font-medium hover:bg-gold-500/10 transition-all active:scale-[0.98]"
+          className="w-full py-2.5 rounded-xl border border-copper-500/20 bg-copper-500/5 text-copper-300 text-sm font-medium hover:bg-copper-500/10 transition-all active:scale-[0.98]"
         >
           🔄 Rafraichir les commandes
         </button>
         {orders.length > 0 && (
           <button
             onClick={handleExportExcel}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-sm font-semibold hover:from-emerald-500 hover:to-emerald-600 transition-all active:scale-[0.98] shadow-lg shadow-emerald-600/25"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-success-600 to-success-500 text-white text-sm font-semibold hover:from-success-500 hover:to-success-400 transition-all active:scale-[0.98] shadow-lg shadow-success-500/20"
           >
             📥 Telecharger Excel pour le restaurant
           </button>
@@ -167,14 +157,14 @@ export default function OrdersListPage() {
       <div className="px-4 space-y-3">
         {loading ? (
           <div className="text-center py-12">
-            <div className="text-3xl mb-3 animate-float">🥩</div>
-            <p className="text-gold-300 animate-pulse">Chargement...</p>
+            <div className="text-3xl mb-3 animate-float">🔥</div>
+            <p className="text-copper-300 animate-pulse">Chargement...</p>
           </div>
         ) : orders.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-4xl mb-3">🍽️</div>
-            <p className="text-night-400">Aucune commande pour l'instant</p>
-            <p className="text-night-500 text-sm mt-1">
+            <p className="text-smoke-400">Aucune commande pour l'instant</p>
+            <p className="text-smoke-600 text-sm mt-1">
               Les commandes apparaitront ici
             </p>
           </div>

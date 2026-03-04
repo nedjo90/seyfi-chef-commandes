@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
-const COLORS = ['#edc25c', '#e8ad35', '#d4911d', '#19b874', '#3dd28f', '#f4a188', '#ec7454']
+// Ember-themed confetti colors
+const COLORS = ['#e8432e', '#d97b1f', '#f86f5e', '#eeb06a', '#c92d1a', '#22c55e', '#fdf0d5']
 
 export default function Confetti() {
   const pieces = useMemo(() => {

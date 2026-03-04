@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import Header from '../components/Header'
-import StarryBackground from '../components/StarryBackground'
+import EmberBackground from '../components/StarryBackground'
 import CategorySection from '../components/CategorySection'
 import OrderRecap from '../components/OrderRecap'
 import OrderSummaryBar from '../components/OrderSummaryBar'
@@ -110,10 +110,10 @@ export default function OrderPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <StarryBackground />
+        <EmberBackground />
         <div className="relative z-10 text-center">
-          <div className="text-5xl mb-4 animate-float">🥩</div>
-          <p className="text-gold-300 animate-pulse font-display text-lg">Chargement du menu...</p>
+          <div className="text-5xl mb-4 animate-float" style={{ filter: 'drop-shadow(0 0 12px rgba(232,67,46,0.5))' }}>🔥</div>
+          <p className="text-copper-300 animate-pulse font-display text-lg">Chargement du menu...</p>
         </div>
       </div>
     )
@@ -121,15 +121,15 @@ export default function OrderPage() {
 
   return (
     <div className="min-h-screen pb-28">
-      <StarryBackground />
-      <div className="relative z-10 moroccan-pattern">
+      <EmberBackground />
+      <div className="relative z-10 grill-pattern">
         <Header />
 
         {/* Nav to orders */}
         <div className="px-4 mb-5">
           <a
             href="#/commandes"
-            className="block w-full text-center py-2.5 rounded-xl border border-gold-500/15 bg-gold-500/5 text-gold-400 text-sm font-medium hover:bg-gold-500/10 transition-all"
+            className="block w-full text-center py-2.5 rounded-xl border border-ember-500/15 bg-ember-500/5 text-copper-400 text-sm font-medium hover:bg-ember-500/10 transition-all"
           >
             📋 Voir toutes les commandes →
           </a>
@@ -137,14 +137,14 @@ export default function OrderPage() {
 
         {/* Error banner */}
         {error && (
-          <div className="mx-4 mb-4 p-3 rounded-xl bg-terracotta-600/20 border border-terracotta-500/30 text-terracotta-300 text-sm text-center animate-slide-down">
+          <div className="mx-4 mb-4 p-3 rounded-xl bg-ember-600/20 border border-ember-500/30 text-ember-300 text-sm text-center animate-slide-down">
             ❌ {error}
           </div>
         )}
 
         {/* Guest name */}
         <div className="px-4 mb-4">
-          <label className="block text-sm text-gold-300 font-medium mb-2">
+          <label className="block text-sm text-cream-300 font-medium mb-2">
             ✍️ Votre nom *
           </label>
           <input
@@ -152,13 +152,13 @@ export default function OrderPage() {
             value={guestName}
             onChange={(e) => setGuestName(e.target.value)}
             placeholder="Entrez votre nom..."
-            className="w-full bg-night-800/40 border border-night-700/40 rounded-xl px-4 py-3.5 text-gold-100 placeholder-night-500 focus:outline-none focus:border-gold-500/40 dropdown-glow transition-all text-base"
+            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3.5 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all text-base"
           />
         </div>
 
         {/* Phone */}
-        <div className="px-4 mb-5">
-          <label className="block text-sm text-gold-300 font-medium mb-2">
+        <div className="px-4 mb-6">
+          <label className="block text-sm text-cream-300 font-medium mb-2">
             📱 Telephone (optionnel)
           </label>
           <input
@@ -166,12 +166,12 @@ export default function OrderPage() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="+352..."
-            className="w-full bg-night-800/40 border border-night-700/40 rounded-xl px-4 py-3.5 text-gold-100 placeholder-night-500 focus:outline-none focus:border-gold-500/40 dropdown-glow transition-all text-base"
+            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3.5 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all text-base"
           />
         </div>
 
         {/* Menu categories */}
-        <div className="px-4 space-y-5">
+        <div className="px-4">
           {CATEGORY_ORDER.map((cat) => {
             const items = grouped[cat] ?? []
             if (items.length === 0) return null
@@ -190,8 +190,8 @@ export default function OrderPage() {
         </div>
 
         {/* Remarks */}
-        <div className="px-4 mt-5">
-          <label className="block text-sm text-gold-300 font-medium mb-2">
+        <div className="px-4 mt-2">
+          <label className="block text-sm text-cream-300 font-medium mb-2">
             💬 Remarques (allergies, preferences...)
           </label>
           <textarea
@@ -199,7 +199,7 @@ export default function OrderPage() {
             onChange={(e) => setRemarks(e.target.value)}
             placeholder="Optionnel..."
             rows={2}
-            className="w-full bg-night-800/40 border border-night-700/40 rounded-xl px-4 py-3 text-gold-100 placeholder-night-500 focus:outline-none focus:border-gold-500/40 dropdown-glow transition-all resize-none text-base"
+            className="w-full bg-charcoal-800/50 border border-charcoal-700/40 rounded-xl px-4 py-3 text-cream-100 placeholder-smoke-600 focus:outline-none focus:border-ember-500/40 input-glow transition-all resize-none text-base"
           />
         </div>
 

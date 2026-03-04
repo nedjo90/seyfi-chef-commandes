@@ -26,36 +26,36 @@ export default function MenuItemCard({ item, cartMap, onAdd, onRemove }: Props) 
 
   return (
     <div
-      className={`rounded-xl p-3 transition-all duration-200 border
+      className={`rounded-xl p-3.5 transition-all duration-300 border
         ${inCart
-          ? 'bg-gold-500/20 border-gold-400 shadow-lg shadow-gold-500/10'
-          : 'bg-night-800/50 border-night-700/50'
+          ? 'bg-ember-500/10 border-ember-500/40 shadow-lg shadow-ember-500/5'
+          : 'bg-charcoal-800/50 border-charcoal-700/30 hover:border-copper-500/20 hover:bg-charcoal-800/70'
         }
-        ${isFree ? 'opacity-60' : ''}
+        ${isFree ? 'opacity-50' : ''}
       `}
     >
       {/* Item info */}
       <div className="flex items-start justify-between gap-2 mb-1">
         <div className="flex-1 min-w-0">
           <span className={`text-sm leading-tight font-medium ${
-            inCart ? 'text-gold-200' : 'text-night-200'
+            inCart ? 'text-cream-200' : 'text-smoke-200'
           }`}>
             {item.name}
           </span>
           {item.description && (
-            <p className="text-xs text-night-500 mt-0.5 line-clamp-2">{item.description}</p>
+            <p className="text-xs text-smoke-600 mt-0.5 line-clamp-2">{item.description}</p>
           )}
         </div>
         {!hasVariants && (
           <span className={`text-sm font-semibold whitespace-nowrap ${
-            inCart ? 'text-gold-400' : 'text-night-400'
-          } ${isFree ? 'text-emerald-500' : ''}`}>
+            inCart ? 'text-copper-400' : 'text-smoke-500'
+          } ${isFree ? 'text-success-500' : ''}`}>
             {isFree ? 'Offert' : `${item.price.toFixed(2)} \u20AC`}
           </span>
         )}
       </div>
 
-      {/* Variants (Petite/Grande, 2pers/4pers) */}
+      {/* Variants */}
       {hasVariants ? (
         <div className="mt-2 space-y-1.5">
           {item.variants!.map((v) => (
@@ -92,10 +92,12 @@ function VariantRow({ item, variantLabel, price, quantity, onAdd, onRemove }: {
   onRemove: (item: MenuItem, variantLabel: string | null) => void
 }) {
   return (
-    <div className="flex items-center justify-between gap-2 pl-2 py-1 rounded-lg bg-night-800/30">
-      <span className="text-xs text-night-300">{variantLabel}</span>
+    <div className={`flex items-center justify-between gap-2 pl-3 py-1.5 rounded-lg transition-all ${
+      quantity > 0 ? 'bg-ember-500/8 border border-ember-500/15' : 'bg-charcoal-900/30'
+    }`}>
+      <span className="text-xs text-smoke-300">{variantLabel}</span>
       <div className="flex items-center gap-3">
-        <span className={`text-xs font-semibold ${quantity > 0 ? 'text-gold-400' : 'text-night-400'}`}>
+        <span className={`text-xs font-semibold ${quantity > 0 ? 'text-copper-400' : 'text-smoke-500'}`}>
           {price.toFixed(2)} {'\u20AC'}
         </span>
         <QuantityControl
@@ -119,16 +121,16 @@ function QuantityControl({ quantity, onIncrement, onDecrement }: {
         <>
           <button
             onClick={onDecrement}
-            className="w-7 h-7 rounded-lg bg-night-700/80 text-gold-300 text-sm font-bold flex items-center justify-center hover:bg-night-600 active:scale-90 transition-all"
+            className="w-7 h-7 rounded-lg bg-charcoal-700/80 text-cream-200 text-sm font-bold flex items-center justify-center hover:bg-charcoal-600 active:scale-90 transition-all"
           >
             -
           </button>
-          <span className="w-6 text-center text-sm font-bold text-gold-300">{quantity}</span>
+          <span className="w-6 text-center text-sm font-bold text-copper-300">{quantity}</span>
         </>
       )}
       <button
         onClick={onIncrement}
-        className="w-7 h-7 rounded-lg bg-gold-500/20 text-gold-400 text-sm font-bold flex items-center justify-center hover:bg-gold-500/30 active:scale-90 transition-all"
+        className="w-7 h-7 rounded-lg bg-ember-500/20 text-ember-400 text-sm font-bold flex items-center justify-center hover:bg-ember-500/30 active:scale-90 transition-all"
       >
         +
       </button>
