@@ -40,7 +40,7 @@ export default function MenuItemCard({ item, cartMap, onAdd, onRemove }: Props) 
             )}
           </div>
           {item.description && (
-            <p className="text-xs text-onyx-500 mt-1 leading-relaxed line-clamp-2 italic">{item.description}</p>
+            <p className="text-xs text-onyx-400 mt-1 leading-relaxed line-clamp-2 italic">{item.description}</p>
           )}
         </div>
 
@@ -72,11 +72,11 @@ export default function MenuItemCard({ item, cartMap, onAdd, onRemove }: Props) 
             const qty = getCartQty(cartMap, item.id, v.label)
             return (
               <div key={v.label} className="flex items-center justify-between gap-3">
-                <span className={`text-xs ${qty > 0 ? 'text-ivory-300' : 'text-onyx-500'}`}>
+                <span className={`text-xs ${qty > 0 ? 'text-ivory-300' : 'text-onyx-400'}`}>
                   {v.label}
                 </span>
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs tabular-nums ${qty > 0 ? 'text-champagne-400' : 'text-onyx-500'}`}>
+                  <span className={`text-xs tabular-nums ${qty > 0 ? 'text-champagne-400' : 'text-onyx-400'}`}>
                     {v.price.toFixed(2)}
                   </span>
                   <QuantityControl
