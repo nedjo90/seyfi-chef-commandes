@@ -74,6 +74,7 @@ export function groupByCategory(items: MenuItem[]): Record<string, MenuItem[]> {
 }
 
 export const CATEGORY_ORDER = [
+  'menu_ramadan',
   'entrees',
   'salades',
   'menu_midi',
@@ -93,6 +94,7 @@ export const CATEGORY_ORDER = [
 ] as const
 
 export const categoryLabels: Record<string, string> = {
+  menu_ramadan: 'Menu Ramadan Iftar',
   entrees: 'Entrees',
   salades: 'Salades',
   menu_midi: 'Menu du Midi (12h-14h)',
@@ -112,6 +114,7 @@ export const categoryLabels: Record<string, string> = {
 }
 
 export const categoryIcons: Record<string, string> = {
+  menu_ramadan: '🌙',
   entrees: '🥗',
   salades: '🥬',
   menu_midi: '🍝',
